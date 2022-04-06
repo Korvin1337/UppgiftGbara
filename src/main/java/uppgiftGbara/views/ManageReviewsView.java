@@ -1,8 +1,8 @@
-package com.example.uppgiftgbara.views;
+package uppgiftGbara.views;
 
-import com.example.uppgiftgbara.components.ReviewForm;
-import com.example.uppgiftgbara.entities.Review;
-import com.example.uppgiftgbara.service.ReviewService;
+import uppgiftGbara.components.GameForm;
+import uppgiftGbara.entities.Review;
+import uppgiftGbara.service.ReviewService;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
@@ -20,12 +20,11 @@ public class ManageReviewsView extends VerticalLayout {
 
     Grid<Review> grid = new Grid<>(Review.class);
     ReviewService reviewService;
-    ReviewForm reviewForm;
-    /*PrincipalUtil principalUtil;*/
+    GameForm gameForm;
 
     public ManageReviewsView(ReviewService reviewService) {
         this.reviewService = reviewService;
-        this.reviewForm = new ReviewForm(reviewService, this);
+        this.gameForm = new GameForm(reviewService, this);
         setAlignItems(Alignment.CENTER);
         add(new H2("Coming soon......"));
 
@@ -58,18 +57,18 @@ public class ManageReviewsView extends VerticalLayout {
         grid.addColumn(Review::getReviewScore).setHeader("Score");
         grid.addColumn(Review::getAuthor).setHeader("Author");
         grid.asSingleSelect().addValueChangeListener(evt -> {
-            reviewForm.setReview(evt.getValue());
+            gameForm.setReview(evt.getValue());
         });
 
-        HorizontalLayout mainContent = new HorizontalLayout(grid, reviewForm);
+        HorizontalLayout mainContent = new HorizontalLayout(grid, gameForm);
         mainContent.setSizeFull();
 
         Button button = new Button("Add new review", evt -> {
             Dialog dialog = new Dialog();
-            ReviewForm dialogForm = new ReviewForm(reviewService, this);
+            GameForm dialogForm = new GameForm(reviewService, this);
 
             Review review = new Review();
-            review.setAuthor(review.getAuthor()/*principalUtil.getLoggedInAppUser()*/);
+            review.setAuthor(review.getAuthor());
 
             dialogForm.setReview(review);
             dialog.add(dialogForm);
@@ -83,6 +82,7 @@ public class ManageReviewsView extends VerticalLayout {
 
     public void updateItems() {
         grid.setItems(reviewService.findAll());
-        /*grid.setItems(reviewService.findByUsername(PrincipalUtil.getName()));*/
     }
 }
+
+

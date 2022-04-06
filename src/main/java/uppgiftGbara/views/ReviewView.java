@@ -1,12 +1,12 @@
-package com.example.uppgiftgbara.views;
+package uppgiftGbara.views;
 
-import com.example.uppgiftgbara.service.ReviewService;
+import uppgiftGbara.service.ReviewService;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 
 
-@Route(value = "/", layout = AppView.class)
+@Route(value = "/reviews", layout = AppView.class)
 public class ReviewView extends VerticalLayout {
 
     public ReviewView(ReviewService reviewService) {

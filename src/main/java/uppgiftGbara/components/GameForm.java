@@ -1,23 +1,25 @@
-package com.example.uppgiftgbara.components;
+package uppgiftGbara.components;
 
-import com.example.uppgiftgbara.entities.Review;
-import com.example.uppgiftgbara.service.ReviewService;
-import com.example.uppgiftgbara.views.ManageReviewsView;
+import uppgiftGbara.entities.Review;
+import uppgiftGbara.service.ReviewService;
+import uppgiftGbara.views.ManageReviewsView;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.textfield.IntegerField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.BeanValidationBinder;
 import com.vaadin.flow.data.binder.Binder;
 
-public class ReviewForm extends FormLayout {
+public class GameForm extends FormLayout {
 
-    TextField reviewTitle = new TextField("reviewTitle");
+    TextField gameTitle = new TextField("gameTitle");
     TextArea reviewText = new TextArea("reviewText");
     TextField reviewPlus = new TextField("reviewPlus");
     TextField reviewMinus = new TextField("reviewMinus");
-    TextField reviewScore = new TextField("reviewScore");
+    IntegerField reviewScore = new IntegerField("reviewScore");
+    TextField author = new TextField("author");
     Button saveButton = new Button("Save");
     /*this.appUser = appUser;*/
 
@@ -25,7 +27,7 @@ public class ReviewForm extends FormLayout {
     ReviewService reviewService;
     ManageReviewsView manageReviewView;
 
-    public ReviewForm(ReviewService reviewService, ManageReviewsView manageReviewView) {
+    public GameForm(ReviewService reviewService, ManageReviewsView manageReviewView) {
         this.reviewService = reviewService;
         this.manageReviewView = manageReviewView;
         binder.bindInstanceFields(this);
@@ -33,7 +35,7 @@ public class ReviewForm extends FormLayout {
 
         saveButton.addClickListener(evt -> handleSave(manageReviewView));
 
-        add(reviewTitle, reviewText, reviewPlus, reviewMinus, reviewScore, saveButton);
+        add(gameTitle, reviewText, reviewPlus, reviewMinus, reviewScore, author, saveButton);
     }
 
     private void handleSave(ManageReviewsView manageReviewsView) {

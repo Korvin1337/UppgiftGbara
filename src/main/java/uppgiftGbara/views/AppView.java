@@ -1,4 +1,4 @@
-package com.example.uppgiftgbara.views;
+package uppgiftGbara.views;
 
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
@@ -22,10 +22,11 @@ public class AppView extends AppLayout {
 
         addToNavbar(navbarLayout);
 
+        RouterLink gameView = new RouterLink("View Games", GameView.class);
         RouterLink reviewView = new RouterLink("View Reviews", ReviewView.class);
         RouterLink manageReviewsView = new RouterLink("Mange Reviews", ManageReviewsView.class);
 
-        VerticalLayout sideBarContent = new VerticalLayout(reviewView, manageReviewsView);
+        VerticalLayout sideBarContent = new VerticalLayout(gameView, reviewView, manageReviewsView);
 
         addToDrawer(sideBarContent);
 

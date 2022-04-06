@@ -1,8 +1,7 @@
-package com.example.uppgiftgbara.service;
+package uppgiftGbara.service;
 
-
-import com.example.uppgiftgbara.entities.Review;
-import com.example.uppgiftgbara.repositories.ReviewRepository;
+import uppgiftGbara.entities.Review;
+import uppgiftGbara.repositorys.ReviewRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
@@ -42,11 +41,12 @@ public class ReviewService {
         Review existingReview = reviewRepository.findById(id).orElseThrow();
 
 
-        if(changedReview.getGameTitle() != null
-                && changedReview.getReviewText() != null
-                && changedReview.getReviewPlus() != null
-                && changedReview.getReviewMinus() != null
-                && changedReview.getReviewScore() >= 0 && changedReview.getReviewScore() <= 5)
+        if(changedReview.getGameTitle() .length() > 0
+                && changedReview.getReviewText().length() > 0
+                && changedReview.getReviewPlus() .length() > 0
+                && changedReview.getReviewMinus() .length() > 0
+                && changedReview.getReviewScore() >= 0 && changedReview.getReviewScore() <= 5
+                && changedReview.getAuthor().length() > 0)
         {
             BeanUtils.copyProperties(changedReview, existingReview, "id");
         }

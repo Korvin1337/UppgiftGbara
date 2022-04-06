@@ -1,8 +1,11 @@
-package com.example.uppgiftgbara.entities;
+package uppgiftGbara.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.Set;
 
 @Entity
 public class Review {
@@ -25,7 +28,7 @@ public class Review {
     private String reviewMinus;
 
     @Column
-    @Size(min= 0, max= 5)
+    /*@Size(min= 0, max= 5)*/
     private int ReviewScore;
 
     @Column
@@ -40,7 +43,9 @@ public class Review {
         this.author = author;
     }
 
-    public Review(){}
+    public Review() {
+
+    }
 
     public int getId() {
         return id;
@@ -102,7 +107,7 @@ public class Review {
     public String toString() {
         return "Review{" +
                 "id=" + id +
-                ", reviewTitle='" + gameTitle + '\'' +
+                ", gameTitle='" + gameTitle + '\'' +
                 ", reviewText='" + reviewText + '\'' +
                 ", reviewPlus='" + reviewPlus + '\'' +
                 ", reviewMinus='" + reviewMinus + '\'' +
